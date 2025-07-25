@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Us - FitForce{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center text-center mb-5">
+  <div class="col-md-8">
+    <!-- Bigger Centered Logo -->
+    <img src="{% static 'images/web.logo.webp' %}" alt="FitForce Logo" class="about-logo mb-4" style="width: 180px; height: 180px;">
+
+    <h1 class="mb-4">About FitForce</h1>
+
+    <p>
+      At <strong>FitForce</strong>, we believe fitness should be accessible, enjoyable, and personalized.
+      Whether you're a beginner looking for guidance, or a seasoned athlete tracking your progress, our platform
+      is designed to support your fitness journey.
+    </p>
+
+    <p>
+      Founded by a group of fitness enthusiasts and developers, FitForce combines technology with training expertise.
+      Our goal is to make workout planning, tracking, and accountability easier through a simple and intuitive interface.
+    </p>
+
+    <p>
+      With curated workout programs, progress logging, and an expanding set of features, FitForce is more than just an app — 
+      it’s your personal training companion.
+    </p>
+
+    <p>
+      We’re committed to continually improving based on your feedback, and helping you crush your goals one workout at a time.
+    </p>
+
+    <p class="text-muted">Thanks for being part of the FitForce community 💪</p>
+  </div>
+</div>
+
+<!-- Meet the Team Section -->
+<div class="container mt-4 mb-5">
+  <h2 class="text-center mb-4">Meet the Team</h2>
+  <div class="row justify-content-center text-center g-4">
+
+    <!-- Founder 1 -->
+    <div class="col-6 col-md-4 col-lg-3">
+      <img src="{% static 'images/founder 1.png' %}" class="rounded-circle mb-2" alt="Founder 1" style="width: 140px; height: 140px; object-fit: cover;">
+      <h5>Alex Rivera</h5>
+      <p class="small">Co-founder & Lead Developer. Merges tech with training for a seamless fitness experience.</p>
+    </div>
+
+    <!-- Founder 2 -->
+    <div class="col-6 col-md-4 col-lg-3">
+      <img src="{% static 'images/founder 2.webp' %}" class="rounded-circle mb-2" alt="Founder 2" style="width: 140px; height: 140px; object-fit: cover;">
+      <h5>Jordan Lee</h5>
+      <p class="small">Co-founder & Product Designer. Ensures FitForce stays sleek, smart, and simple.</p>
+    </div>
+
+    <!-- Female Trainer -->
+    <div class="col-6 col-md-4 col-lg-3">
+      <img src="{% static 'images/trainer female.jpg' %}" class="rounded-circle mb-2" alt="Female Trainer" style="width: 140px; height: 140px; object-fit: cover;">
+      <h5>Sophia Tran</h5>
+      <p class="small">Certified Personal Trainer. Expert in strength and HIIT programs for all levels.</p>
+    </div>
+
+    <!-- Male Trainer -->
+    <div class="col-6 col-md-4 col-lg-3">
+      <img src="{% static 'images/trainer male.webp' %}" class="rounded-circle mb-2" alt="Male Trainer" style="width: 140px; height: 140px; object-fit: cover;">
+      <h5>Marcus Grant</h5>
+      <p class="small">Performance coach & mobility specialist. Keeps workouts safe and effective.</p>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+<!-- workouts/templates/registration/login.html -->
+{% extends 'base.html' %}
+
+{% block title %}Login - FitForce{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6 col-lg-4">
+    <div class="card shadow rounded">
+      <div class="card-body">
+        <h3 class="card-title text-center mb-4">Log In</h3>
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="btn btn-primary w-100">Log In</button>
+        </form>
+        <p class="mt-3 text-center">
+          Don't have an account?
+          <!-- Trigger the signup modal -->
+          <a href="#" data-bs-toggle="modal" data-bs-target="#signupModal">Sign up here</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Signup Modal -->
+<div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="signupModalLabel">Sign Up</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="{% url 'signup' %}">
+          {% csrf_token %}
+          {{ signup_form.as_p }}
+          <button type="submit" class="btn btn-success w-100">Sign Up</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
