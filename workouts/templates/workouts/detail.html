@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}{{ exercise.name }} - FitForce{% endblock %}
+{% block content %}
+<div class="container py-5">
+  <h2>{{ exercise.name }}</h2>
+  {% if exercise.image_url %}
+    <img src="{{ exercise.image_url }}" alt="{{ exercise.name }}" class="img-fluid mb-4">
+  {% endif %}
+  <p><strong>Difficulty:</strong> {{ exercise.difficulty|capfirst }}</p>
+  <p>{{ exercise.description }}</p>
+  <p><em>{{ exercise.tip }}</em></p>
+  <a href="{% url 'workouts' %}" class="btn btn-outline-primary mt-4">Back to list</a>
+</div>
+{% endblock %}

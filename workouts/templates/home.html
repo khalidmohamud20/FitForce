@@ -1,13 +1,40 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Home - FitForce{% endblock %}
 
 {% block content %}
-<section class="hero-banner text-center text-light py-5">
-  <div class="hero-box p-4 px-md-5">
-    <h1 class="display-4 fw-bold">Welcome to FitForce</h1>
-    <p class="lead mt-3">Your personal path to strength, fitness, and wellness.</p>
-    <a href="{% url 'login' %}" class="btn btn-primary btn-lg mt-4">Get Started</a>
+<!-- Hero Section -->
+<section class="hero-banner text-center text-light d-flex align-items-center justify-content-center"
+         style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url({% static 'images/home-page.avif' %}); 
+         background-size: cover; background-position: center; min-height: 30vh;">
+  <div class="p-3 px-md-4">
+    <h1 class="h2 fw-bold">Welcome to FitForce</h1>
+    <p class="lead mt-2 mb-3">Your personal path to strength, fitness, and wellness.</p>
+    <a href="{% url 'login' %}" class="btn btn-primary btn-sm">Get Started</a>
   </div>
 </section>
+
+<!-- Values Section -->
+<div class="container my-4 py-4" style="background-color: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+  <h2 class="text-center mb-4 fs-4">Our Values</h2>
+  <div class="row text-center small">
+    <div class="col-md-6 mb-4">
+      <h5 class="fw-semibold">Empowerment</h5>
+      <p>Helping individuals reach their goals with confidence.</p>
+    </div>
+    <div class="col-md-6 mb-4">
+      <h5 class="fw-semibold">Wellness</h5>
+      <p>Supporting holistic physical and mental health.</p>
+    </div>
+    <div class="col-md-6">
+      <h5 class="fw-semibold">Community</h5>
+      <p>Creating an inclusive, motivating environment.</p>
+    </div>
+    <div class="col-md-6">
+      <h5 class="fw-semibold">Consistency</h5>
+      <p>Building lifelong habits through daily progress.</p>
+    </div>
+  </div>
+</div>
 {% endblock %}

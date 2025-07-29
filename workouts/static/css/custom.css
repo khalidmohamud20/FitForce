@@ -7,27 +7,27 @@
   --color-off-white: #EEF1E8;
 }
 
-/* ==============================
-   Base & Layout
-============================== */
+/* Base & Layout */
 html, body {
   height: 100%;
+  margin: 0; /* reset default margin */
 }
 
 body {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
   background-color: var(--color-off-white);
   color: var(--color-dark);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 main {
-  flex: 1;
+  flex: 1 0 auto;
 }
 
-/* ==============================
-   Navbar
-============================== */
+/* Navbar */
 .navbar {
   background-color: var(--color-dark);
 }
@@ -35,18 +35,18 @@ main {
 .navbar-brand,
 .navbar-nav .nav-link {
   color: var(--color-light-gray) !important;
+  transition: color 0.3s ease;
 }
 
 .navbar-nav .nav-link:hover {
   color: var(--color-primary) !important;
 }
 
-/* ==============================
-   Buttons
-============================== */
+/* Buttons */
 .btn-primary {
   background-color: var(--color-primary);
   border-color: var(--color-primary);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .btn-primary:hover {
@@ -54,19 +54,7 @@ main {
   border-color: var(--color-deep-blue);
 }
 
-.btn-success {
-  background-color: var(--color-muted-purple);
-  border-color: var(--color-muted-purple);
-}
-
-.btn-success:hover {
-  background-color: var(--color-deep-blue);
-  border-color: var(--color-deep-blue);
-}
-
-/* ==============================
-   Containers & Boxes
-============================== */
+/* Containers & Boxes */
 .container {
   background-color: var(--color-light-gray);
   border-radius: 12px;
@@ -74,20 +62,10 @@ main {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.hero-container {
-  padding: 0;
-  margin: 0 auto 2rem auto;
-  max-width: 1140px;
-  overflow: hidden;
-  border-radius: 12px;
-}
-
-/* ==============================
-   Hero Banner
-============================== */
+/* Hero Banner */
 .hero-banner {
-  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-              url('../images/home-page.avif') no-repeat center center;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('../images/home-page.avif') no-repeat center center;
   background-size: cover;
   min-height: 60vh;
   display: flex;
@@ -106,9 +84,7 @@ main {
   border-radius: 0;
 }
 
-/* ==============================
-   About Page Logo
-============================== */
+/* About Page Logo */
 .about-logo {
   width: 160px;
   height: 160px;
@@ -118,9 +94,7 @@ main {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* ==============================
-   Footer
-============================== */
+/* Footer */
 .footer {
   font-size: 0.7rem;
   padding: 0.3rem 1rem;
@@ -147,9 +121,7 @@ footer .container {
   border-radius: 0 !important;
 }
 
-/* ==============================
-   Social Icons
-============================== */
+/* Social Icons */
 .social-icons {
   position: absolute;
   right: 1rem;

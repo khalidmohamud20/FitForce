@@ -4,68 +4,84 @@
 {% block title %}About Us - FitForce{% endblock %}
 
 {% block content %}
-<div class="row justify-content-center text-center mb-5">
-  <div class="col-md-8">
-    <!-- Bigger Centered Logo -->
-    <img src="{% static 'images/web.logo.webp' %}" alt="FitForce Logo" class="about-logo mb-4" style="width: 180px; height: 180px;">
+<!-- About Section -->
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2rem; max-width: 1100px; margin: 0 auto 4rem auto;">
 
-    <h1 class="mb-4">About FitForce</h1>
+  <!-- Left: Detailed Text -->
+  <div style="flex: 1 1 500px; min-width: 320px;">
+    <h1 style="font-size: 3rem; margin-bottom: 2rem;">About FitForce</h1>
 
-    <p>
-      At <strong>FitForce</strong>, we believe fitness should be accessible, enjoyable, and personalized.
-      Whether you're a beginner looking for guidance, or a seasoned athlete tracking your progress, our platform
-      is designed to support your fitness journey.
+    <p style="font-size: 1.2rem; line-height: 2; margin-bottom: 1rem;">
+      <strong>FitForce</strong> is more than just a fitness platform — it’s a personalized training companion built for real people. Our mission is to help individuals take charge of their fitness through structured plans, motivational tools, and real expert guidance.
     </p>
 
-    <p>
-      Founded by a group of fitness enthusiasts and developers, FitForce combines technology with training expertise.
-      Our goal is to make workout planning, tracking, and accountability easier through a simple and intuitive interface.
+    <p style="font-size: 1.2rem; line-height: 2; margin-bottom: 1rem;">
+      Whether you're new to fitness, getting back on track, or training at an advanced level, FitForce makes it easy to build and follow a routine that fits your lifestyle. We simplify your progress with clear planning, smart suggestions, and tools that help you stay consistent — not overwhelmed.
     </p>
 
-    <p>
-      With curated workout programs, progress logging, and an expanding set of features, FitForce is more than just an app — 
-      it’s your personal training companion.
+    <p style="font-size: 1.2rem; line-height: 2; margin-bottom: 1rem;">
+      We blend technology, coaching principles, and wellness science to deliver programs that challenge, educate, and adapt with you. Our platform is shaped by feedback from athletes, trainers, and beginners alike — ensuring everyone finds value in their journey.
     </p>
 
-    <p>
-      We’re committed to continually improving based on your feedback, and helping you crush your goals one workout at a time.
+    <p style="font-size: 1.2rem; line-height: 2;">
+      At FitForce, we’re not just focused on physical change — we're committed to building sustainable, lifelong health habits with every rep and every step. 💪
     </p>
+  </div>
 
-    <p class="text-muted">Thanks for being part of the FitForce community 💪</p>
+  <!-- Right: Circular Logo -->
+  <div style="flex-shrink: 0; border-radius: 50%; overflow: hidden; width: 280px; height: 280px; box-shadow: 0 0 10px rgba(0,0,0,0.15);">
+    <img src="{% static 'images/web.logo.webp' %}" alt="FitForce Logo" style="width: 100%; height: 100%; object-fit: cover;">
   </div>
 </div>
 
 <!-- Meet the Team Section -->
 <div class="container mt-4 mb-5">
   <h2 class="text-center mb-4">Meet the Team</h2>
-  <div class="row justify-content-center text-center g-4">
 
-    <!-- Founder 1 -->
-    <div class="col-6 col-md-4 col-lg-3">
-      <img src="{% static 'images/founder 1.png' %}" class="rounded-circle mb-2" alt="Founder 1" style="width: 140px; height: 140px; object-fit: cover;">
-      <h5>Alex Rivera</h5>
-      <p class="small">Co-founder & Lead Developer. Merges tech with training for a seamless fitness experience.</p>
+  <div class="row g-5 justify-content-center">
+
+    <!-- Team Member 1 -->
+    <div class="col-12 d-flex align-items-start gap-4">
+      <img src="{% static 'images/founder 1.png' %}" alt="Alex Rivera" class="rounded-circle mt-1" style="width: 140px; height: 140px; object-fit: cover;">
+      <div>
+        <h5 class="mb-2">Alex Rivera</h5>
+        <p style="line-height: 1.7;">
+          Alex is the visionary behind FitForce's technical architecture. With over a decade of experience in full-stack development and a personal passion for strength training, he leads the engineering team to create reliable and responsive fitness tools. Alex ensures every line of code supports real user transformation, balancing technology with human-centered design.
+        </p>
+      </div>
     </div>
 
-    <!-- Founder 2 -->
-    <div class="col-6 col-md-4 col-lg-3">
-      <img src="{% static 'images/founder 2.webp' %}" class="rounded-circle mb-2" alt="Founder 2" style="width: 140px; height: 140px; object-fit: cover;">
-      <h5>Jordan Lee</h5>
-      <p class="small">Co-founder & Product Designer. Ensures FitForce stays sleek, smart, and simple.</p>
+    <!-- Team Member 2 -->
+    <div class="col-12 d-flex align-items-start gap-4">
+      <img src="{% static 'images/founder 2.webp' %}" alt="Jordan Lee" class="rounded-circle mt-1" style="width: 140px; height: 140px; object-fit: cover;">
+      <div>
+        <h5 class="mb-2">Jordan Lee</h5>
+        <p style="line-height: 1.7;">
+          Jordan is our design and product lead, ensuring FitForce remains intuitive, stylish, and inclusive. With a background in UX/UI design and behavioral psychology, Jordan turns complex goals into simple user flows. His philosophy: the best workout apps don’t just track — they inspire, and FitForce delivers just that.
+        </p>
+      </div>
     </div>
 
-    <!-- Female Trainer -->
-    <div class="col-6 col-md-4 col-lg-3">
-      <img src="{% static 'images/trainer female.jpg' %}" class="rounded-circle mb-2" alt="Female Trainer" style="width: 140px; height: 140px; object-fit: cover;">
-      <h5>Sophia Tran</h5>
-      <p class="small">Certified Personal Trainer. Expert in strength and HIIT programs for all levels.</p>
+    <!-- Team Member 3 -->
+    <div class="col-12 d-flex align-items-start gap-4">
+      <img src="{% static 'images/trainer female.jpg' %}" alt="Sophia Tran" class="rounded-circle mt-1" style="width: 140px; height: 140px; object-fit: cover;">
+      <div>
+        <h5 class="mb-2">Sophia Tran</h5>
+        <p style="line-height: 1.7;">
+          As a certified personal trainer and nutrition specialist, Sophia leads our content development for strength and HIIT programs. She combines functional movement training with motivational coaching, making sure every plan on FitForce is safe, progressive, and empowering — no matter your starting point.
+        </p>
+      </div>
     </div>
 
-    <!-- Male Trainer -->
-    <div class="col-6 col-md-4 col-lg-3">
-      <img src="{% static 'images/trainer male.webp' %}" class="rounded-circle mb-2" alt="Male Trainer" style="width: 140px; height: 140px; object-fit: cover;">
-      <h5>Marcus Grant</h5>
-      <p class="small">Performance coach & mobility specialist. Keeps workouts safe and effective.</p>
+    <!-- Team Member 4 -->
+    <div class="col-12 d-flex align-items-start gap-4">
+      <img src="{% static 'images/trainer male.webp' %}" alt="Marcus Grant" class="rounded-circle mt-1" style="width: 140px; height: 140px; object-fit: cover;">
+      <div>
+        <h5 class="mb-2">Marcus Grant</h5>
+        <p style="line-height: 1.7;">
+          Marcus is our performance and recovery coach with a focus on functional fitness and injury prevention. With years of experience training athletes and everyday movers, he helps design FitForce routines that enhance mobility, build strength, and support long-term health — because results mean nothing without longevity.
+        </p>
+      </div>
     </div>
 
   </div>
