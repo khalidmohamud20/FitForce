@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .models import Workout, Exercise
+from .models import Workout, Exercise, WorkoutExercise
 from .forms import CustomUserCreationForm
 
 def home(request):
@@ -9,7 +9,6 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
-# ⛔ Removed @login_required to make workouts page public
 def workouts(request):
     level = request.GET.get('level', 'all')
     all_exercises = Exercise.objects.all()
@@ -21,16 +20,20 @@ def workouts(request):
 
     if request.method == 'POST':
         if request.user.is_authenticated:
-            selected_ids = request.POST.getlist('selected_exercises')
             workout = Workout.objects.create(user=request.user, name='Custom Workout')
-            for eid in selected_ids:
-                reps = request.POST.get(f'reps_{eid}')
-                sets = request.POST.get(f'sets_{eid}')
-                ex = get_object_or_404(Exercise, id=eid)
-                workout.exercises.add(ex, through_defaults={'reps': reps, 'sets': sets})
+            for exercise in filtered:
+                if str(exercise.id) in request.POST.getlist('selected_exercises'):
+                    reps = int(request.POST.get(f'reps_{exercise.id}', 0))
+                    sets = int(request.POST.get(f'sets_{exercise.id}', 0))
+                    WorkoutExercise.objects.create(
+                        workout=workout,
+                        exercise=exercise,
+                        reps=reps,
+                        sets=sets
+                    )
             return redirect('home')
         else:
-            return redirect('login')  # Optional: prevent POST from anonymous users
+            return redirect('login')
 
     return render(request, 'workouts/workouts.html', {
         'exercises': filtered,
