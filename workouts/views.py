@@ -1,55 +1,47 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
-from .models import Workout, Exercise, WorkoutExercise
-from .forms import CustomUserCreationForm
+from django.contrib import messages
+from .models import Workout
+from .forms import WorkoutForm
 
-def home(request):
-    return render(request, 'home.html')
+def home_view(request):
+    return render(request, 'workouts/home.html')
 
-def about(request):
-    return render(request, 'about.html')
+def workout_list(request):
+    workouts = Workout.objects.all().order_by('-date')  # Show all workouts for now
+    return render(request, 'workouts/workouts.html', {'workouts': workouts})
 
-def workouts(request):
-    level = request.GET.get('level', 'all')
-    all_exercises = Exercise.objects.all()
-
-    if level in ['beginner', 'intermediate', 'advanced']:
-        filtered = all_exercises.filter(difficulty=level)
+def workout_add(request):
+    if request.method == 'POST':
+        form = WorkoutForm(request.POST)
+        if form.is_valid():
+            workout = form.save(commit=False)
+            workout.user = None  # Temporarily remove user assignment
+            workout.save()
+            messages.success(request, 'Workout added.')
+            return redirect('workouts:workout_list')
     else:
-        filtered = all_exercises
+        form = WorkoutForm()
+    return render(request, 'workouts/workout_form.html', {'form': form})
 
+def workout_edit(request, pk):
+    workout = get_object_or_404(Workout, pk=pk)
     if request.method == 'POST':
-        if request.user.is_authenticated:
-            workout = Workout.objects.create(user=request.user, name='Custom Workout')
-            for exercise in filtered:
-                if str(exercise.id) in request.POST.getlist('selected_exercises'):
-                    reps = int(request.POST.get(f'reps_{exercise.id}', 0))
-                    sets = int(request.POST.get(f'sets_{exercise.id}', 0))
-                    WorkoutExercise.objects.create(
-                        workout=workout,
-                        exercise=exercise,
-                        reps=reps,
-                        sets=sets
-                    )
-            return redirect('home')
-        else:
-            return redirect('login')
-
-    return render(request, 'workouts/workouts.html', {
-        'exercises': filtered,
-        'level': level,
-    })
-
-def exercise_detail(request, pk):
-    exercise = get_object_or_404(Exercise, pk=pk)
-    return render(request, 'workouts/exercise_detail.html', {'exercise': exercise})
-
-def signup_view(request):
-    if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST)
+        form = WorkoutForm(request.POST, instance=workout)
         if form.is_valid():
             form.save()
-            return redirect('login')
+            messages.success(request, 'Workout updated.')
+            return redirect('workouts:workout_list')
     else:
-        form = CustomUserCreationForm()
-    return render(request, 'registration/signup.html', {'form': form})
+        form = WorkoutForm(instance=workout)
+    return render(request, 'workouts/workout_form.html', {'form': form})
+
+def workout_delete(request, pk):
+    workout = get_object_or_404(Workout, pk=pk)
+    if request.method == 'POST':
+        workout.delete()
+        messages.success(request, 'Workout deleted.')
+        return redirect('workouts:workout_list')
+    return render(request, 'workouts/workout_confirm_delete.html', {'workout': workout})
+
+def about_view(request):
+    return render(request, 'workouts/about.html')

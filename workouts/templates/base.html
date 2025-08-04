@@ -25,18 +25,34 @@
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand navbar-dark bg-dark mb-4">
     <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'home' %}">FitForce</a>
+      <a class="navbar-brand" href="{% url 'workouts:home' %}">FitForce</a>
       <ul class="navbar-nav ms-auto flex-row">
-        <li class="nav-item mx-2"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
-        <li class="nav-item mx-2"><a class="nav-link" href="{% url 'about' %}">About</a></li>
-        <li class="nav-item mx-2"><a class="nav-link" href="{% url 'workouts' %}">Workouts</a></li>
+
+        <!-- Always show "Workouts" link -->
+        <li class="nav-item mx-2">
+          <a class="nav-link" href="{% url 'workouts:workout_list' %}">Workouts</a>
+        </li>
+
+        <!-- Always show "About" link -->
+        <li class="nav-item mx-2">
+          <a class="nav-link" href="{% url 'workouts:about' %}">About</a>
+        </li>
 
         {% if user.is_authenticated %}
-          <li class="nav-item mx-2"><a class="nav-link" href="#">Hello, {{ user.username }}</a></li>
-          <li class="nav-item mx-2"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+          <!-- If user is logged in, show their name and logout -->
+          <li class="nav-item mx-2">
+            <span class="nav-link disabled">Hello, {{ user.username }}</span>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+          </li>
         {% else %}
-          <li class="nav-item mx-2"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+          <!-- If user is not logged in, show "Login" link -->
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="{% url 'workouts:login' %}">Login</a>
+          </li>
         {% endif %}
+
       </ul>
     </div>
   </nav>
@@ -53,7 +69,7 @@
     <div class="container text-center position-relative">
       <p class="mb-1 small">&copy; {{ year }} FitForce. All rights reserved.</p>
       <p class="mb-2 small">
-        <a href="{% url 'about' %}" class="text-light text-decoration-none">About</a> |
+        <a href="{% url 'workouts:about' %}" class="text-light text-decoration-none">About</a> |
         <a href="#" class="text-light text-decoration-none">Contact</a> |
         <a href="#" class="text-light text-decoration-none">Privacy Policy</a>
       </p>

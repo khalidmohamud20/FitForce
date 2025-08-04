@@ -1,18 +1,16 @@
 from django.urls import path
-from . import views
 from django.contrib.auth import views as auth_views
-from django.contrib.auth.decorators import login_required
+from . import views
+
+app_name = 'workouts'
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('about/', views.about, name='about'),
-
-    path('workouts/', views.workouts, name='workouts'),
-    path('my-workouts/', login_required(views.my_workouts), name='my_workouts'),
-
-    path('exercise/<int:pk>/', views.exercise_detail, name='exercise_detail'),
-
-    path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'),
-    path('signup/', views.signup_view, name='signup'),
+    path('', views.home_view, name='home'),  # Home page
+    path('workouts/', views.workout_list, name='workout_list'),  # Workout list page
+    path('workouts/add/', views.workout_add, name='workout_add'),  # Add workout page
+    path('workouts/edit/<int:pk>/', views.workout_edit, name='workout_edit'),  # Edit workout page
+    path('workouts/delete/<int:pk>/', views.workout_delete, name='workout_delete'),  # Delete workout page
+    path('about/', views.about_view, name='about'),  # About page
+    path('login/', auth_views.LoginView.as_view(), name='login'),  # Login page
+    # signup removed
 ]

@@ -1,0 +1,12 @@
+<!-- workouts/templates/workouts/form.html -->
+{% extends 'base.html' %}
+{% block title %}{{ form_title }}{% endblock %}
+{% block content %}
+<h2>{{ form_title }}</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn btn-primary">{{ submit_text }}</button>
+</form>
+<a href="{% url 'workouts:workout_list' %}" class="btn btn-secondary mt-2">Cancel</a>
+{% endblock %}

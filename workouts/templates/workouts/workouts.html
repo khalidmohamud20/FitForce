@@ -1,53 +1,164 @@
-{% extends 'base.html' %}
-{% block title %}Choose Exercises - FitForce{% endblock %}
+update full code keep all content {% extends 'base.html' %}
+{% load static %}
+{% block title %}Workouts{% endblock %}
 
 {% block content %}
-<div class="container my-5">
-  <h1 class="text-center mb-4">Customize Your Workout</h1>
+<h1 class="mb-4">Workouts for a Good Physique</h1>
 
-  <div class="d-flex justify-content-center mb-4">
-    <a href="{% url 'workouts' %}?level=beginner" class="btn btn-outline-primary mx-1 {% if level == 'beginner' %}active{% endif %}">Beginner</a>
-    <a href="{% url 'workouts' %}?level=intermediate" class="btn btn-outline-primary mx-1 {% if level == 'intermediate' %}active{% endif %}">Intermediate</a>
-    <a href="{% url 'workouts' %}?level=advanced" class="btn btn-outline-primary mx-1 {% if level == 'advanced' %}active{% endif %}">Advanced</a>
-    <a href="{% url 'workouts' %}" class="btn btn-outline-secondary mx-1 {% if level == 'all' %}active{% endif %}">All</a>
+<!-- Arms Section -->
+<h2>Arms</h2>
+<div class="row">
+  <div class="col-md-6">
+    <div class="card mb-4 shadow-sm p-3">
+      <img src="{% static 'workout_images/bicepcurls.webp' %}" class="card-img-top mb-3" alt="Bicep Curls">
+      <h4>Bicep Curls</h4>
+      <p>Bicep curls target the biceps brachii muscles, enhancing arm size and strength. This exercise improves grip and arm aesthetics. Using dumbbells or barbells helps vary muscle stimulus. It’s great for both beginners and advanced lifters looking to isolate arm muscles. Consistent curls increase your pulling power and overall arm definition. Perfect for improving the front arm silhouette.</p>
+    </div>
   </div>
-
-  <form method="post" novalidate>
-    {% csrf_token %}
-    <div class="row g-4">
-      {% for exercise in exercises %}
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm">
-          {% if exercise.image_url %}
-          <img src="{{ exercise.image_url }}" class="card-img-top" alt="{{ exercise.name }}">
-          {% endif %}
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">
-              <a href="{% url 'exercise_detail' exercise.pk %}" class="stretched-link">{{ exercise.name }}</a>
-            </h5>
-            <p class="card-text small">{{ exercise.short_description }}</p>
-            <div class="mt-auto">
-              <div class="mb-2">
-                <label class="form-label small" for="reps_{{ exercise.id }}">Reps:</label>
-                <input type="number" id="reps_{{ exercise.id }}" name="reps_{{ exercise.id }}" class="form-control form-control-sm" value="10" min="1" max="50" required>
-              </div>
-              <div class="mb-2">
-                <label class="form-label small" for="sets_{{ exercise.id }}">Sets:</label>
-                <input type="number" id="sets_{{ exercise.id }}" name="sets_{{ exercise.id }}" class="form-control form-control-sm" value="3" min="1" max="10" required>
-              </div>
-              <div class="form-check mt-2">
-                <input class="form-check-input" type="checkbox" name="selected_exercises" value="{{ exercise.id }}" id="exercise_{{ exercise.id }}">
-                <label class="form-check-label small" for="exercise_{{ exercise.id }}">Add</label>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
+  <div class="col-md-6">
+    <div class="card mb-4 shadow-sm p-3">
+      <img src="{% static 'workout_images/tricepdips.webp' %}" class="card-img-top mb-3" alt="Tricep Dips">
+      <h4>Tricep Dips</h4>
+      <p>Tricep dips focus on the triceps, building upper arm definition and strength. They engage shoulders and chest as secondary muscles, making them compound. This movement helps improve pushing power and arm endurance. Bodyweight or weighted variations increase difficulty. It’s essential for balanced arm development and overall upper body strength. Regular dips contribute to stronger, more sculpted arms.</p>
     </div>
-    <div class="text-center mt-5">
-      <button type="submit" class="btn btn-success btn-lg">Save Workout</button>
-    </div>
-  </form>
+  </div>
 </div>
+
+<!-- Chest Section -->
+<h2>Chest</h2>
+<div class="row">
+  <div class="col-md-6">
+    <div class="card mb-4 shadow-sm p-3">
+      <img src="{% static 'workout_images/benchpress.webp' %}" class="card-img-top mb-3" alt="Bench Press">
+      <h4>Bench Press</h4>
+      <p>The bench press is a classic compound lift that targets the chest, shoulders, and triceps. It builds upper body mass and strength efficiently. This exercise improves pressing power and overall muscular development. Both barbell and dumbbell variations are effective. Regular bench pressing enhances your physique and functional strength. Proper form reduces injury risk while maximizing gains.</p>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card mb-4 shadow-sm p-3">
+      <img src="{% static 'workout_images/pushup.webp' %}" class="card-img-top mb-3" alt="Push-Ups">
+      <h4>Push-Ups</h4>
+      <p>Push-ups are a versatile bodyweight exercise that builds chest, shoulder, and tricep strength. They enhance core stability and improve muscular endurance. Push-ups can be modified for all fitness levels and done anywhere. Regular practice supports functional fitness and posture. They promote balanced development and complement weightlifting routines. Great for building strength without equipment.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Legs Section -->
+<h2>Legs</h2>
+<div class="row">
+  <div class="col-md-6">
+    <div class="card mb-4 shadow-sm p-3">
+      <img src="{% static 'workout_images/squats.webp' %}" class="card-img-top mb-3" alt="Squats">
+      <h4>Squats</h4>
+      <p>Squats are the foundational leg exercise, engaging quads, hamstrings, glutes, and core. They build strength, size, and athleticism. Squats improve balance, coordination, and functional movement. Variations include back, front, and goblet squats. Proper form ensures safety and maximizes muscle activation. Essential for a strong, powerful lower body.</p>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card mb-4 shadow-sm p-3">
+      <img src="{% static 'workout_images/lunges.webp' %}" class="card-img-top mb-3" alt="Lunges">
+      <h4>Lunges</h4>
+      <p>Lunges target the legs and glutes while enhancing balance and coordination. They help correct muscle imbalances between legs. Various forms include forward, backward, and walking lunges. Lunges increase leg muscle definition and stability. They also engage the core for balance control. Ideal for functional strength and lower body aesthetics.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Back Section -->
+<h2>Back</h2>
+<div class="row">
+  <div class="col-md-6">
+    <div class="card mb-4 shadow-sm p-3">
+      <img src="{% static 'workout_images/deadlifts.webp' %}" class="card-img-top mb-3" alt="Deadlifts">
+      <h4>Deadlifts</h4>
+      <p>Deadlifts are a full-body power lift emphasizing the posterior chain including lower back, glutes, and hamstrings. They build thickness and strength in the back. This compound lift improves posture and functional strength. Variations include conventional and sumo deadlifts. Technique is critical to avoid injury and maximize benefit. Deadlifts are key for total-body muscular development.</p>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card mb-4 shadow-sm p-3">
+      <img src="{% static 'workout_images/pullups.jpg' %}" class="card-img-top mb-3" alt="Pull-Ups">
+      <h4>Pull-Ups</h4>
+      <p>Pull-ups work the upper back, lats, and biceps, developing width and upper body strength. They are challenging bodyweight exercises that improve muscle endurance. Variations include wide grip, chin-ups, and assisted pull-ups. Pull-ups contribute to a V-shaped physique. Regular training enhances grip and back strength. Perfect for upper body pulling power.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Shoulders Section -->
+<h2>Shoulders</h2>
+<div class="row">
+  <div class="col-md-6">
+    <div class="card mb-4 shadow-sm p-3">
+      <img src="{% static 'workout_images/overheadpress.webp' %}" class="card-img-top mb-3" alt="Overhead Press">
+      <h4>Overhead Press</h4>
+      <p>The overhead press develops strong shoulders and triceps while engaging the core for stability. It’s a fundamental compound exercise for upper body pressing strength. Variations include seated or standing presses with dumbbells or barbells. This lift improves shoulder mass and functional overhead power. Proper technique prevents injury and builds muscle evenly. Crucial for rounded, powerful shoulders.</p>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card mb-4 shadow-sm p-3">
+      <img src="{% static 'workout_images/latteralraise.webp' %}" class="card-img-top mb-3" alt="Lateral Raises">
+      <h4>Lateral Raises</h4>
+      <p>Lateral raises isolate the side deltoids, enhancing shoulder width and shape. They are important for balanced shoulder development. Dumbbells or cables can be used to perform this exercise. It improves overall shoulder aesthetics by creating broader appearance. Often used as an accessory exercise after pressing movements. Regular training enhances shoulder definition and symmetry.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Core Section -->
+<h2>Core</h2>
+<div class="row">
+  <div class="col-md-6">
+    <div class="card mb-4 shadow-sm p-3">
+      <img src="{% static 'workout_images/plank.png' %}" class="card-img-top mb-3" alt="Planks">
+      <h4>Planks</h4>
+      <p>Planks strengthen the entire core, improving stability, posture, and spinal support. This isometric exercise activates multiple core muscles simultaneously. It’s accessible to all fitness levels and builds endurance. Planks help prevent back pain and improve functional movement. Consistent planking supports balance and athleticism.</p>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card mb-4 shadow-sm p-3">
+      <img src="{% static 'workout_images/russiantwists.webp' %}" class="card-img-top mb-3" alt="Russian Twists">
+      <h4>Russian Twists</h4>
+      <p>Russian twists target the obliques and rotational core muscles. This helps improve core strength and athletic performance. The twisting motion enhances torso flexibility and control. Weighted or bodyweight versions increase difficulty. They promote a more defined waistline and core stability. Excellent for improving balance and rotational power.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Additional Exercises Section -->
+<h2>Additional Key Exercises</h2>
+<div class="row">
+  <div class="col-md-6">
+    <div class="card mb-4 shadow-sm p-3">
+      <img src="{% static 'workout_images/chestfly.webp' %}" class="card-img-top mb-3" alt="Chest Flyes">
+      <h4>Chest Flyes</h4>
+      <p>Chest flyes isolate the pectoral muscles, helping to shape and define the chest. They improve the stretch and contraction of the chest muscles. Dumbbells or cables can be used. This exercise complements pressing movements for balanced chest development. It increases muscle flexibility and enhances chest aesthetics. Ideal as an accessory lift.</p>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card mb-4 shadow-sm p-3">
+      <img src="{% static 'workout_images/hammercurls.webp' %}" class="card-img-top mb-3" alt="Hammer Curls">
+      <h4>Hammer Curls</h4>
+      <p>Hammer curls target the brachialis muscle along with biceps, adding thickness to the upper arm. The neutral grip reduces wrist strain. This exercise improves arm strength and aesthetics. Dumbbells allow for natural arm positioning. Hammer curls support stronger grip and forearm development. Great for balanced arm training.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Custom Workouts Section -->
+<hr>
+<h2>Your Custom Workouts</h2>
+
+<a href="{% url 'workouts:workout_add' %}" class="btn btn-primary mb-3">+ Add New Workout</a>
+
+<div class="row">
+  {% for workout in workouts %}
+    <div class="col-md-6">
+      <div class="card mb-4 shadow-sm p-3">
+        <h4>{{ workout.date }}</h4>
+        <p>{{ workout.description }}</p>
+        <p><strong>Date:</strong> {{ workout.date }}</p>
+        <a href="{% url 'workouts:workout_edit' workout.pk %}" class="btn btn-sm btn-warning">Edit</a>
+        <form action="{% url 'workouts:workout_delete' workout.pk %}" method="post" style="display:inline;">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+        </form>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
 {% endblock %}
