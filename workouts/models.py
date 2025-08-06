@@ -2,26 +2,24 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Exercise(models.Model):
-    DIFFICULTY_CHOICES = [
-        ('beginner', 'Beginner'),
-        ('intermediate', 'Intermediate'),
-        ('advanced', 'Advanced'),
-    ]
-
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)  # Added name field
     description = models.TextField(blank=True)
-    difficulty = models.CharField(max_length=20, choices=DIFFICULTY_CHOICES, default='beginner')
+    difficulty = models.CharField(max_length=20, choices=[('beginner', 'Beginner'), ('intermediate', 'Intermediate'), ('advanced', 'Advanced')], default='beginner')
 
     def __str__(self):
-        return self.name
+        return self.name  # Return the exercise name
+
 
 class Workout(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    description = models.TextField(blank=True)  # Removed name field
+    name = models.CharField(max_length=100)
+    description = models.TextField(blank=True)
     date = models.DateTimeField(auto_now_add=True)
+    duration = models.PositiveIntegerField()
 
     def __str__(self):
-        return f"Workout by {self.user.username} on {self.date}"
+        return f"Workout: {self.name} by {self.user.username} on {self.date}"
+
 
 class WorkoutExercise(models.Model):
     workout = models.ForeignKey(Workout, on_delete=models.CASCADE, related_name='workout_exercises')

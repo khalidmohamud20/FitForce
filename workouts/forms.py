@@ -3,7 +3,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Workout
 
-class SignUpForm(UserCreationForm):  # Renamed from CustomUserCreationForm
+# SignUpForm for user registration
+class SignUpForm(UserCreationForm):
     email = forms.EmailField(
         required=True,
         widget=forms.EmailInput(attrs={
@@ -23,7 +24,14 @@ class SignUpForm(UserCreationForm):  # Renamed from CustomUserCreationForm
             self.fields[fieldname].help_text = None
         self.fields['email'].help_text = None
 
+# WorkoutForm for managing workouts
 class WorkoutForm(forms.ModelForm):
     class Meta:
         model = Workout
-        fields = ['description']
+        fields = ['name', 'description', 'duration']  # Include 'duration' here
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Customize widget styles
+        for fieldname in self.fields:
+            self.fields[fieldname].widget.attrs.update({'class': 'form-control'})

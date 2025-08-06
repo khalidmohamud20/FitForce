@@ -10,11 +10,14 @@
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  
   <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+  
   <!-- Custom CSS -->
   <link rel="stylesheet" href="{% static 'css/custom.css' %}" />
 
+  <!-- Theme Meta -->
   <meta name="theme-color" content="#59A0BB" />
   <meta name="msapplication-navbutton-color" content="#59A0BB" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -23,37 +26,28 @@
 <body class="d-flex flex-column min-vh-100">
 
   <!-- NAVBAR -->
-  <nav class="navbar navbar-expand navbar-dark bg-dark mb-4">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
     <div class="container-fluid">
       <a class="navbar-brand" href="{% url 'workouts:home' %}">FitForce</a>
-      <ul class="navbar-nav ms-auto flex-row">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto flex-row">
 
-        <!-- Always show "Workouts" link -->
-        <li class="nav-item mx-2">
-          <a class="nav-link" href="{% url 'workouts:workout_list' %}">Workouts</a>
-        </li>
-
-        <!-- Always show "About" link -->
-        <li class="nav-item mx-2">
-          <a class="nav-link" href="{% url 'workouts:about' %}">About</a>
-        </li>
-
-        {% if user.is_authenticated %}
-          <!-- If user is logged in, show their name and logout -->
+          <!-- Workouts -->
           <li class="nav-item mx-2">
-            <span class="nav-link disabled">Hello, {{ user.username }}</span>
+            <a class="nav-link" href="{% url 'workouts:workout_list' %}">Workouts</a>
           </li>
-          <li class="nav-item mx-2">
-            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-          </li>
-        {% else %}
-          <!-- If user is not logged in, show "Login" link -->
-          <li class="nav-item mx-2">
-            <a class="nav-link" href="{% url 'workouts:login' %}">Login</a>
-          </li>
-        {% endif %}
 
-      </ul>
+          <!-- About -->
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="{% url 'workouts:about' %}">About</a>
+          </li>
+
+        </ul>
+      </div>
     </div>
   </nav>
 
@@ -66,7 +60,7 @@
 
   <!-- FOOTER -->
   <footer class="footer bg-dark text-light py-3 mt-auto">
-    <div class="container text-center position-relative">
+    <div class="container text-center">
       <p class="mb-1 small">&copy; {{ year }} FitForce. All rights reserved.</p>
       <p class="mb-2 small">
         <a href="{% url 'workouts:about' %}" class="text-light text-decoration-none">About</a> |
@@ -90,7 +84,8 @@
     </div>
   </footer>
 
-  <!-- Bootstrap JS Bundle -->
+  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
