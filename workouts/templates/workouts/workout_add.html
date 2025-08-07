@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Add Workout{% endblock %}
+{% block title %}{{ form.instance.pk|yesno:"Edit Workout,Add Workout" }}{% endblock %}
 
 {% block content %}
-  <h2>Add New Workout</h2>
+  <h2>{{ form.instance.pk|yesno:"Edit Workout,Add New Workout" }}</h2>
+
   <form method="POST">
     {% csrf_token %}
-    <div>
-      <label for="name">Workout Name:</label>
-      <input type="text" id="name" name="name" required>
-    </div>
-    <button type="submit">Add Workout</button>
+    {{ form.as_p }}
+
+    <button type="submit">
+      {{ form.instance.pk|yesno:"Update Workout,Add Workout" }}
+    </button>
   </form>
 {% endblock %}

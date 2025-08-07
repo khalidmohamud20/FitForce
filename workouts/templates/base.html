@@ -1,6 +1,4 @@
 {% load static %}
-{% now "Y" as year %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,14 +8,12 @@
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  
   <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
-  
   <!-- Custom CSS -->
   <link rel="stylesheet" href="{% static 'css/custom.css' %}" />
 
-  <!-- Theme Meta -->
+  <!-- Theme -->
   <meta name="theme-color" content="#59A0BB" />
   <meta name="msapplication-navbutton-color" content="#59A0BB" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -29,23 +25,30 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
     <div class="container-fluid">
       <a class="navbar-brand" href="{% url 'workouts:home' %}">FitForce</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
-      
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto flex-row">
 
-          <!-- Workouts -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto flex-row align-items-center">
           <li class="nav-item mx-2">
             <a class="nav-link" href="{% url 'workouts:workout_list' %}">Workouts</a>
           </li>
-
-          <!-- About -->
           <li class="nav-item mx-2">
             <a class="nav-link" href="{% url 'workouts:about' %}">About</a>
           </li>
-
+          {% if user.is_authenticated %}
+            <li class="nav-item mx-2">
+              <span class="nav-link disabled">Hi, {{ user.username }}</span>
+            </li>
+            <li class="nav-item mx-2">
+              <button class="nav-link btn btn-link text-decoration-none" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</button>
+            </li>
+          {% else %}
+            <li class="nav-item mx-2">
+              <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#signupModal">Sign Up</a>
+            </li>
+          {% endif %}
         </ul>
       </div>
     </div>
@@ -61,31 +64,61 @@
   <!-- FOOTER -->
   <footer class="footer bg-dark text-light py-3 mt-auto">
     <div class="container text-center">
-      <p class="mb-1 small">&copy; {{ year }} FitForce. All rights reserved.</p>
+      <p class="mb-1 small">&copy; {% now "Y" %} FitForce. All rights reserved.</p>
       <p class="mb-2 small">
         <a href="{% url 'workouts:about' %}" class="text-light text-decoration-none">About</a> |
         <a href="#" class="text-light text-decoration-none">Contact</a> |
         <a href="#" class="text-light text-decoration-none">Privacy Policy</a>
       </p>
       <div class="social-icons">
-        <a href="https://www.instagram.com" target="_blank" rel="noopener" class="text-light me-3" aria-label="Instagram">
-          <i class="bi bi-instagram"></i>
-        </a>
-        <a href="https://www.facebook.com" target="_blank" rel="noopener" class="text-light me-3" aria-label="Facebook">
-          <i class="bi bi-facebook"></i>
-        </a>
-        <a href="https://www.snapchat.com" target="_blank" rel="noopener" class="text-light me-3" aria-label="Snapchat">
-          <i class="bi bi-snapchat"></i>
-        </a>
-        <a href="https://www.twitter.com" target="_blank" rel="noopener" class="text-light" aria-label="Twitter">
-          <i class="bi bi-twitter"></i>
-        </a>
+        <a href="https://www.instagram.com" class="text-light me-3" target="_blank"><i class="bi bi-instagram"></i></a>
+        <a href="https://www.facebook.com" class="text-light me-3" target="_blank"><i class="bi bi-facebook"></i></a>
+        <a href="https://www.snapchat.com" class="text-light me-3" target="_blank"><i class="bi bi-snapchat"></i></a>
+        <a href="https://www.twitter.com" class="text-light" target="_blank"><i class="bi bi-twitter"></i></a>
       </div>
     </div>
   </footer>
 
+  <!-- LOGOUT Modal -->
+  <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirm Logout</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">Are you sure you want to logout?</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIGN UP Modal -->
+  <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form method="POST" action="{% url 'workouts:signup' %}">
+          {% csrf_token %}
+          <div class="modal-header">
+            <h5 class="modal-title" id="signupModalLabel">Sign Up</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            {{ form.as_p }}
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Register</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>

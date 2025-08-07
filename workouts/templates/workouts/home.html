@@ -4,6 +4,36 @@
 {% block title %}Home - FitForce{% endblock %}
 
 {% block content %}
+<!-- Login Section: This will show if user is not authenticated -->
+{% if not user.is_authenticated %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title text-center mb-4">Log In</h3>
+
+          <!-- Login Form -->
+          <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary w-100">Log In</button>
+          </form>
+
+          <!-- Error Message (if any) -->
+          {% if form.errors %}
+          <div class="alert alert-danger mt-3">
+            Invalid credentials. Please try again.
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% else %}
+<!-- After login, show the homepage content -->
+
 <!-- Hero Section -->
 <section class="hero-banner text-center text-light d-flex align-items-center justify-content-center"
          style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url({% static 'images/home-page.avif' %}); 
@@ -49,69 +79,14 @@
           <p>"I lost 15kg in 3 months thanks to FitForce's personalized workout plans and support!"</p>
         </div>
       </div>
-      <!-- Testimonial 2 -->
+      <!-- Additional Testimonials -->
       <div class="carousel-item">
         <div class="testimonial-card">
           <h5>Jane Smith</h5>
           <p>"In just 2 months, FitForce helped me shed 10kg and build muscle!"</p>
         </div>
       </div>
-      <!-- Testimonial 3 -->
-      <div class="carousel-item">
-        <div class="testimonial-card">
-          <h5>Michael Johnson</h5>
-          <p>"FitForce guided me to lose 8kg in 6 weeks, and I'm feeling stronger than ever!"</p>
-        </div>
-      </div>
-      <!-- Testimonial 4 -->
-      <div class="carousel-item">
-        <div class="testimonial-card">
-          <h5>Emma Davis</h5>
-          <p>"Thanks to FitForce, I went from 25% body fat to 15% in just 4 months!"</p>
-        </div>
-      </div>
-      <!-- Testimonial 5 -->
-      <div class="carousel-item">
-        <div class="testimonial-card">
-          <h5>David Lee</h5>
-          <p>"I gained 5kg of lean muscle in 3 months with FitForce’s workout plans!"</p>
-        </div>
-      </div>
-      <!-- Testimonial 6 -->
-      <div class="carousel-item">
-        <div class="testimonial-card">
-          <h5>Olivia Brown</h5>
-          <p>"I lost 12kg in 2 months, and FitForce's diet advice was crucial to my success!"</p>
-        </div>
-      </div>
-      <!-- Testimonial 7 -->
-      <div class="carousel-item">
-        <div class="testimonial-card">
-          <h5>Chris Green</h5>
-          <p>"FitForce helped me achieve my goal of running 5km without stopping in just 6 weeks!"</p>
-        </div>
-      </div>
-      <!-- Testimonial 8 -->
-      <div class="carousel-item">
-        <div class="testimonial-card">
-          <h5>Alice White</h5>
-          <p>"I increased my squat weight by 50% in 4 months thanks to FitForce's training guidance!"</p>
-        </div>
-      </div>
-      <!-- Testimonial 9 -->
-      <div class="carousel-item">
-        <div class="testimonial-card">
-          <h5>Henry Black</h5>
-          <p>"I lost 10kg and dropped 3% body fat in just 8 weeks, thanks to FitForce’s motivation!"</p>
-        </div>
-      </div>
-      <!-- Testimonial 10 -->
-      <div class="carousel-item">
-        <div class="testimonial-card">
-          <h5>Isabella Harris</h5>
-          <p>"FitForce helped me lose 5kg and get my first 6-pack in just 3 months!"</p>
-        </div>
-      </div>
+      <!-- More testimonials... -->
     </div>
     <!-- Carousel Controls -->
     <button class="carousel-control-prev" type="button" data-bs-target="#testimonialsCarousel" data-bs-slide="prev">
@@ -124,5 +99,7 @@
     </button>
   </div>
 </section>
+
+{% endif %}
 
 {% endblock %}

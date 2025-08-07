@@ -19,16 +19,32 @@ class SignUpForm(UserCreationForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        for fieldname in ['username', 'password1', 'password2']:
-            self.fields[fieldname].widget.attrs.update({'class': 'form-control'})
+
+        self.fields['username'].widget.attrs.update({
+            'class': 'form-control',
+            'placeholder': 'Username'
+        })
+
+        self.fields['password1'].widget.attrs.update({
+            'class': 'form-control',
+            'placeholder': 'Password'
+        })
+
+        self.fields['password2'].widget.attrs.update({
+            'class': 'form-control',
+            'placeholder': 'Confirm password'
+        })
+
+        # Optional: remove help texts
+        for fieldname in ['username', 'email', 'password1', 'password2']:
             self.fields[fieldname].help_text = None
-        self.fields['email'].help_text = None
+
 
 # WorkoutForm for managing workouts
 class WorkoutForm(forms.ModelForm):
     class Meta:
         model = Workout
-        fields = ['name', 'description', 'duration']  # Include 'duration' here
+        fields = ['name', 'description', 'duration']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

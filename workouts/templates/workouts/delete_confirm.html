@@ -2,14 +2,12 @@
 {% block title %}Delete Workout{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-  <h2 class="text-danger mb-4">Delete Workout</h2>
-  <p class="mb-4">Are you sure you want to delete "<strong>{{ workout.name }}</strong>"?</p>
+  <h2>Delete Workout</h2>
+  <p>Are you sure you want to delete "<strong>{{ workout.name }}</strong>"?</p>
 
   <form method="post">
     {% csrf_token %}
-    <button type="submit" class="btn btn-danger">Yes, Delete</button>
-    <a href="{% url 'workouts:workout_list' %}" class="btn btn-secondary ms-2">Cancel</a>
+    <button type="submit">Yes, Delete</button>
+    <a href="{% url 'workouts:workout_list' %}">Cancel</a>
   </form>
-</div>
 {% endblock %}
