@@ -1,9 +1,19 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block title %}Workouts{% endblock %}
 
 {% block content %}
-<h1 class="mb-4">Workouts for a Good Physique</h1>
+<h1 class="mb-4">Workouts for a great physique</h1>
+
+<div class="container mt-5">
+  <h1 class="mb-4">My Workouts</h1>
+  <p class="lead">
+    Welcome to your personal fitness log—a place to track your progress and stay motivated!  
+    This selection features some of the best exercises to help build a strong, balanced physique,  
+    but feel free to add your own activities like running, yoga, or any workout that keeps you moving.  
+    Customize, edit, and grow your routine to suit your goals and lifestyle!💪
+  </p>
 
 <!-- Arms Section -->
 <h2>Arms</h2>
@@ -118,7 +128,6 @@
     </div>
   </div>
 </div>
-
 <!-- Additional Exercises Section -->
 <h2>Additional Key Exercises</h2>
 <div class="row">
@@ -148,9 +157,10 @@
   {% for workout in workouts %}
     <div class="col-md-6">
       <div class="card mb-4 shadow-sm p-3">
-        <h4>{{ workout.date }}</h4>
+        <h4>{{ workout.name }}</h4>
+        <p><strong>Category:</strong> {{ workout.category }}</p>
+        <p><strong>Date:</strong> {{ workout.date|date:"F j, Y, H:i" }}</p>
         <p>{{ workout.description }}</p>
-        <p><strong>Date:</strong> {{ workout.date }}</p>
         <a href="{% url 'workouts:workout_edit' workout.pk %}" class="btn btn-sm btn-warning">Edit</a>
         <form action="{% url 'workouts:workout_delete' workout.pk %}" method="post" style="display:inline;">
           {% csrf_token %}

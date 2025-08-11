@@ -8,8 +8,6 @@ from .forms import WorkoutForm
 
 # Home View
 def home_view(request):
-    if request.user.is_authenticated:
-        return redirect('workouts:workout_list')
 
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)

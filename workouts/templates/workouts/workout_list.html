@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}My Workouts{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h1 class="mb-4">My Workouts</h1>
+
+  <div class="alert alert-primary">
+    <p class="lead mb-0">
+      These are just a few great exercises to help you build a good physique. There are many more exercises you can add and customize to your workouts. Think of this as your personal workout log or diary — you can edit, add, and track any exercises you want. Whether it’s running on the track or lifting weights, this is your space to create the workout plan that works best for you.
+    </p>
+  </div>
+
+  <a href="{% url 'workouts:workout_add' %}" class="btn btn-primary mb-3">+ Create Workout</a>
+
+  {% if workouts %}
+    <ul class="list-group">
+      {% for workout in workouts %}
+        <li class="list-group-item mb-3">
+          <h5><strong>{{ workout.name }}</strong></h5>
+          <p>
+            <strong>Category:</strong> {{ workout.get_category_display }}<br>
+            <strong>Date & Time:</strong> {{ workout.date|date:"F j, Y, g:i a" }}<br>
+            <strong>Duration:</strong> {{ workout.duration }} minutes
+          </p>
+          {% if workout.description %}
+          <p><strong>Description:</strong> {{ workout.description }}</p>
+          {% endif %}
+          <a href="{% url 'workouts:workout_edit' workout.pk %}" class="btn btn-sm btn-outline-info me-2">Edit</a>
+          <form action="{% url 'workouts:workout_delete' workout.pk %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+          </form>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="text-muted">You have no workouts yet.</p>
+  {% endif %}
+</div>
+{% endblock %}
