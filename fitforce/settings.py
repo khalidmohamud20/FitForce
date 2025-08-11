@@ -1,10 +1,8 @@
 import os
 from pathlib import Path
 import dj_database_url
-LOGIN_URL = 'login'
 
-
-# Default environment variables for DATABASE_URL
+# Set up environment variable for DATABASE_URL
 os.environ.setdefault(
     "DATABASE_URL",
     "postgresql://neondb_owner:npg_rNuQ9lohms3M@ep-solitary-voice-a2yoqhyt.eu-central-1.aws.neon.tech/fled_wad_dairy_66815"
@@ -12,15 +10,14 @@ os.environ.setdefault(
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# Secret Key and Debug setting
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-fallback-secret-key')
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', 'True').lower() in ('true', '1', 'yes')
 
+# Allowed Hosts
 ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', '127.0.0.1,localhost,.herokuapp.com').split(',')
 
-# Application definition
+# Installed Apps
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -31,6 +28,7 @@ INSTALLED_APPS = [
     'workouts',  # Your app
 ]
 
+# Middleware and other settings
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -43,10 +41,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'fitforce.urls'
 
+# Templates Settings
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'workouts' / 'templates'],  # Define template directory
+        'DIRS': [BASE_DIR / 'workouts' / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -61,45 +60,40 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'fitforce.wsgi.application'
 
-# Database configuration (PostgreSQL)
+# Database Configuration (PostgreSQL)
 DATABASES = {
     'default': dj_database_url.parse(
         os.environ.get("DATABASE_URL") or f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
     )
 }
 
-# Password validation
+# Password Validation
 AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',},
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',},
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
 # Internationalization
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
+# Static files settings
 STATIC_URL = '/static/'
-
-# For production static files collection
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Authentication redirects
-LOGIN_REDIRECT_URL = '/home/'  # Redirect after login
-LOGOUT_REDIRECT_URL = '/login/'  # Redirect after logout
-LOGIN_URL = '/login/'  # If not logged in, redirect to login page
+# Login redirects
+LOGIN_REDIRECT_URL = '/home/'
+LOGOUT_REDIRECT_URL = '/login/'
+LOGIN_URL = '/login/'
 
-# Security settings for production
+# Production Security settings
 if not DEBUG:
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
