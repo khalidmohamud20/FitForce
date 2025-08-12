@@ -7,6 +7,19 @@ This platform provides easy-to-use features, including workout tracking, meal pl
 FitForce is a project created as part of my web development journey, focusing on creating an interactive and user-friendly platform for those dedicated to fitness. From design and planning to coding with Django, HTML, and CSS, FitForce reflects my passion for both fitness and development.
 
 ---
+## Table of Contents
+
+- [🏋️ Core Features](#-core-features)  
+- [🛠️ CRUD Functionality (Workouts)](#-crud-functionality-workouts)  
+- [👤 User Profile Management](#-user-profile-management)  
+- [🌟 User Experience Features](#-user-experience-features)  
+- [🛠️ Technology Stack](#-technology-stack)  
+- [🎯 Accessibility Features](#-accessibility-features)  
+- [⚡ Performance Optimizations](#-performance-optimizations)  
+- [🧑‍🤝‍🧑 User Stories](#-user-stories)  
+- [Testing](#testing)  
+- [💡 Lighthouse Report](#-lighthouse-report)  
+- [🚀 Getting Started](#-getting-started)  
 
 ## 🧩 Core Features
 
