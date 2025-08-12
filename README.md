@@ -7,9 +7,9 @@ This platform provides easy-to-use features, including workout tracking, meal pl
 FitForce is a project created as part of my web development journey, focusing on creating an interactive and user-friendly platform for those dedicated to fitness. From design and planning to coding with Django, HTML, and CSS, FitForce reflects my passion for both fitness and development.
 
 ---
-## Table of Contents
-
-- [🏋️ Core Features](#-core-features)  
+## Table of Contents 
+- [🎯 Key Objectives](#key-objectives)
+ - [🏋️ Core Features](#-core-features)  
 - [🛠️ CRUD Functionality (Workouts)](#-crud-functionality-workouts)  
 - [👤 User Profile Management](#-user-profile-management)  
 - [🌟 User Experience Features](#-user-experience-features)  
@@ -19,7 +19,24 @@ FitForce is a project created as part of my web development journey, focusing on
 - [🧑‍🤝‍🧑 User Stories](#-user-stories)  
 - [Testing](#testing)  
 - [💡 Lighthouse Report](#-lighthouse-report)  
-- [🚀 Getting Started](#-getting-started)  
+- [🚀 Getting Started](#-getting-started) 
+
+
+## Key Objectives
+
+The mission behind FitForce is to create an intuitive, effective, and accessible fitness tracking platform that empowers users on their health journeys. The key objectives guiding this project include:
+
+- **User-Friendly Fitness Tracking:** Design and implement features that allow users to effortlessly log workouts, monitor progress, and maintain motivation through clear and engaging interfaces.  
+- **Customizable Workout Plans:** Provide flexibility for users to tailor exercise routines according to their goals, fitness levels, and preferences, supporting both beginners and advanced athletes.  
+- **Responsive and Accessible Design:** Ensure that FitForce delivers a seamless experience on all devices and screen sizes, adhering to accessibility standards to accommodate a diverse user base.  
+- **Secure User Data Management:** Prioritize the privacy and security of user information through robust authentication systems and data protection practices.  
+- **Scalable and Maintainable Codebase:** Build the application with clean, modular code following best practices, facilitating future enhancements, bug fixes, and potential feature expansions.  
+- **Comprehensive Documentation:** Maintain clear, thorough documentation to assist users, contributors, and developers in understanding and extending FitForce.  
+- **Motivational Features:** Incorporate tools such as goal setting, progress visualization, and reminders to keep users engaged and on track with their fitness objectives.  
+- **Performance Optimization:** Ensure fast load times and smooth interactions through efficient coding and resource management.
+
+FitForce strives not only to be a fitness tracker but a reliable companion in every user’s journey toward a healthier lifestyle.
+
 
 ## 🧩 Core Features
 
@@ -229,3 +246,22 @@ python manage.py createsuperuser
 ```bash
 python manage.py runserver
 ```
+## Acknowledgements
+
+FitForce is a project I developed independently from start to finish. While I worked alone on the coding, design, and planning, I want to acknowledge the invaluable open-source tools, libraries, and online resources that made this possible. Tutorials, documentation, and community forums were essential guides throughout the process. I’m proud of the dedication and effort that went into building FitForce, and grateful for the support of the broader developer and fitness communities that inspired and informed this project.
+
+---
+
+## Credits
+
+FitForce is built on a foundation of powerful and reliable technologies, combined with design tools and open-source resources:
+
+- **Django:** Serves as the robust backend framework powering FitForce’s server-side logic, user authentication, and database management. Its scalability and security features have been essential in delivering a stable application.  
+- **Bootstrap:** Provides the responsive, mobile-first front-end framework that ensures FitForce looks clean and works seamlessly across a wide range of devices, from desktops to smartphones.  
+- **Balsamiq:** Used extensively in the early stages for wireframing and prototyping, helping to visualize the user interface and workflow before implementation.  
+- **Open-Source Libraries:** Various third-party libraries have been integrated to enhance functionality, including secure authentication modules, data visualization tools, and utility packages that speed up development.  
+- **Fitness Community Inspiration:** FitForce’s features and user experience are inspired by popular fitness platforms and feedback from users passionate about health and wellness.
+
+Every tool, library, and resource mentioned here has played a critical role in shaping FitForce into a polished, user-friendly fitness platform.
+
+---
