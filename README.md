@@ -143,9 +143,22 @@ FitForce is a project created as part of my web development journey, focusing on
 - **As a user with limited time**, I want a clean, fast-loading site, so I can quickly find and start my workouts.  
 - **As an admin/developer**, I want to create, update, and delete workouts, so I can keep the content fresh and relevant.
 
----## 💡 Lighthouse Report
 
-![Lighthouse report](workouts/static/images/lighthouse pic fit force .png)
+## Testing
+
+To make sure everything works well, I tested the site in several ways:
+
+- ✅ Used [W3C HTML Validator](https://validator.w3.org/) to check HTML validity  
+- ✅ Used [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) to validate CSS  
+- ✅ Ran Lighthouse audits to assess performance, accessibility, and SEO  
+- ✅ Manually tested on desktop, mobile, and tablet using multiple browsers  
+### Lighthouse Report
+
+Below is the Lighthouse report showing strong performance across all key categories:
+
+## 💡Lighthouse Report
+
+![Lighthouse report](workouts/static/images/lighthouse%20pic%20fit%20force%20.png)
 
 - 🟢 **Performance:** 95+ — Fast loading times with optimized static files and responsive images  
 - ♿ **Accessibility:** 70+ — WCAG 2.1 compliant with comprehensive screen reader support  
