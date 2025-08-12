@@ -6,9 +6,9 @@ from django.contrib.auth.decorators import login_required
 from .models import Workout
 from .forms import WorkoutForm
 
-# Home View
-def home_view(request):
 
+# Home View - shows login form styled like workouts page
+def home_view(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
@@ -18,6 +18,7 @@ def home_view(request):
         form = AuthenticationForm()
 
     return render(request, 'workouts/home.html', {'form': form})
+
 
 # Sign Up View
 def signup_view(request):
@@ -35,6 +36,7 @@ def signup_view(request):
 
     return render(request, 'registration/signup.html', {'form': form})
 
+
 # Logout View
 @login_required
 def logout_view(request):
@@ -43,14 +45,16 @@ def logout_view(request):
         return redirect('workouts:home')
     return render(request, 'registration/logout_confirm.html')
 
+
 # Workout List View
-@login_required
+@login_required(login_url='login')
 def workout_list(request):
     workouts = Workout.objects.filter(user=request.user).order_by('-date')
     return render(request, 'workouts/workouts.html', {'workouts': workouts})
 
+
 # Add Workout View
-@login_required
+@login_required(login_url='login')
 def workout_add(request):
     if request.method == 'POST':
         form = WorkoutForm(request.POST)
@@ -58,7 +62,6 @@ def workout_add(request):
             workout = form.save(commit=False)
             workout.user = request.user
 
-            # Fix for non-null 'name' field
             if not workout.name:
                 workout.name = "Default Workout Name"
             if not workout.description:
@@ -76,8 +79,9 @@ def workout_add(request):
         'submit_text': 'Save Workout'
     })
 
+
 # Edit Workout View
-@login_required
+@login_required(login_url='login')
 def workout_edit(request, pk):
     workout = get_object_or_404(Workout, pk=pk, user=request.user)
     if request.method == 'POST':
@@ -85,7 +89,6 @@ def workout_edit(request, pk):
         if form.is_valid():
             workout = form.save(commit=False)
 
-            # Fix for non-null 'name' field
             if not workout.name:
                 workout.name = "Default Workout Name"
             if not workout.description:
@@ -103,8 +106,9 @@ def workout_edit(request, pk):
         'submit_text': 'Update Workout'
     })
 
+
 # Delete Workout View
-@login_required
+@login_required(login_url='login')
 def workout_delete(request, pk):
     workout = get_object_or_404(Workout, pk=pk, user=request.user)
     if request.method == 'POST':
@@ -113,6 +117,14 @@ def workout_delete(request, pk):
         return redirect('workouts:workout_list')
     return render(request, 'workouts/workout_confirm_delete.html', {'workout': workout})
 
-# About Page View
+
+# About Page View - requires login
+@login_required(login_url='login')
 def about_view(request):
     return render(request, 'workouts/about.html')
+
+
+# Workouts Page View - requires login
+@login_required(login_url='login')
+def workouts_page(request):
+    return render(request, 'workouts/workouts.html')

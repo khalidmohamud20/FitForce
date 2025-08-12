@@ -143,4 +143,63 @@ FitForce is a project created as part of my web development journey, focusing on
 - **As a user with limited time**, I want a clean, fast-loading site, so I can quickly find and start my workouts.  
 - **As an admin/developer**, I want to create, update, and delete workouts, so I can keep the content fresh and relevant.
 
----
+---## 💡 Lighthouse Report
+
+![Lighthouse report](workouts/static/images/lighthouse pic fit force .png)
+
+- 🟢 **Performance:** 95+ — Fast loading times with optimized static files and responsive images  
+- ♿ **Accessibility:** 70+ — WCAG 2.1 compliant with comprehensive screen reader support  
+- 📱 **Best Practices:** 95+ — Modern web standards with secure HTTPS deployment  
+- 🔍 **SEO:** 90+ — Semantic HTML structure with proper meta tags and descriptions  
+
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Python 3.11+
+- PostgreSQL (for local development with pgAdmin)
+- Git
+
+### Local Installation
+
+1. **Clone the repository:**
+```bash
+git clone https://github.com/DavidShergold/capstone-shopping-quest.git
+cd capstone-shopping-quest
+```
+
+2. **Create virtual environment:**
+```bash
+python -m venv venv
+# Windows:
+venv\Scripts\activate
+# Mac/Linux:
+source venv/bin/activate
+```
+
+3. **Install dependencies:**
+```bash
+pip install -r requirements.txt
+```
+
+4. **Set up local database (optional - uses SQLite by default):**
+```bash
+# For PostgreSQL setup, copy and modify:
+cp local_settings_example.py shoppingquest/local_settings.py
+# Edit local_settings.py with your PostgreSQL credentials
+```
+
+5. **Run migrations:**
+```bash
+python manage.py migrate
+```
+
+6. **Create superuser (optional):**
+```bash
+python manage.py createsuperuser
+```
+
+7. **Run development server:**
+```bash
+python manage.py runserver
+```

@@ -4,40 +4,32 @@
 {% block title %}Home - FitForce{% endblock %}
 
 {% block content %}
-<!-- Login Section: This will show if user is not authenticated -->
 {% if not user.is_authenticated %}
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-body">
-          <h3 class="card-title text-center mb-4">Log In</h3>
-
-          <!-- Login Form -->
-          <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary w-100">Log In</button>
-          </form>
-
-          <!-- Error Message (if any) -->
-          {% if form.errors %}
-          <div class="alert alert-danger mt-3">
-            Invalid credentials. Please try again.
-          </div>
-          {% endif %}
-        </div>
+<div class="row justify-content-center mt-5">
+  <div class="col-md-6 col-lg-4">
+    <div class="card shadow rounded">
+      <div class="card-body">
+        <h3 class="card-title text-center mb-4">Log In</h3>
+        <form method="post" novalidate>
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="btn btn-primary w-100">Log In</button>
+        </form>
+        <p class="mt-3 text-center">
+          Don't have an account?
+          <a href="{% url 'workouts:signup' %}" data-bs-toggle="modal" data-bs-target="#signupModal">Sign up here</a>
+        </p>
       </div>
     </div>
   </div>
 </div>
 {% else %}
-<!-- After login, show the homepage content -->
 
 <!-- Hero Section -->
 <section class="hero-banner text-center text-light d-flex align-items-center justify-content-center"
-         style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url({% static 'images/home-page.avif' %}); 
-         background-size: cover; background-position: center; min-height: 30vh;">
+         style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                url({% static 'images/home-page.avif' %});
+                background-size: cover; background-position: center; min-height: 30vh;">
   <div class="p-3 px-md-4">
     <h1 class="h2 fw-bold">Welcome to FitForce</h1>
     <p class="lead mt-2 mb-3">Your personal path to strength, fitness, and wellness.</p>
@@ -45,7 +37,9 @@
 </section>
 
 <!-- Values Section -->
-<div class="container my-4 py-4" style="background-color: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+<div class="container my-4 py-4"
+     style="background-color: rgb(206, 151, 206); border-radius: 12px; 
+            box-shadow: 0 4px 12px rgba(238, 217, 237, 0.1);">
   <h2 class="text-center mb-4 fs-4">Our Values</h2>
   <div class="row text-center small">
     <div class="col-md-6 mb-4">
@@ -68,38 +62,95 @@
 </div>
 
 <!-- Testimonial Carousel Section -->
-<section id="testimonials" class="container my-5 py-4" style="background-color: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+<section id="testimonials" class="container my-5 py-4"
+         style="background-color: rgb(181, 173, 173); border-radius: 12px; 
+                box-shadow: 0 4px 12px rgba(255, 253, 253, 0.1);">
   <h2 class="text-center mb-4 fs-4">What Our Users Say</h2>
+
   <div id="testimonialsCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
-      <!-- Testimonial 1 -->
+      <!-- Testimonials -->
       <div class="carousel-item active">
-        <div class="testimonial-card">
-          <h5>John Doe</h5>
-          <p>"I lost 15kg in 3 months thanks to FitForce's personalized workout plans and support!"</p>
+        <div class="testimonial-card text-center px-4 text-dark">
+          <h5 class="mb-2 fw-semibold">Emily, 18</h5>
+          <p class="fst-italic">"FitForce helped me start my fitness journey with confidence. 
+             I lost 7kg in just 3 months and feel so much stronger now."</p>
         </div>
       </div>
-      <!-- Additional Testimonials -->
+
       <div class="carousel-item">
-        <div class="testimonial-card">
-          <h5>Jane Smith</h5>
-          <p>"In just 2 months, FitForce helped me shed 10kg and build muscle!"</p>
+        <div class="testimonial-card text-center px-4 text-dark">
+          <h5 class="mb-2 fw-semibold">Jake, 21</h5>
+          <p class="fst-italic">"With a busy college schedule, FitForce’s workouts were easy to follow. 
+             I gained muscle and improved my stamina faster than I thought possible."</p>
         </div>
       </div>
-      <!-- More testimonials... -->
+
+      <div class="carousel-item">
+        <div class="testimonial-card text-center px-4 text-dark">
+          <h5 class="mb-2 fw-semibold">Sophie, 16</h5>
+          <p class="fst-italic">"The routines kept me motivated even during exams. 
+             The support from the community made all the difference!"</p>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="testimonial-card text-center px-4 text-dark">
+          <h5 class="mb-2 fw-semibold">Mark, 29</h5>
+          <p class="fst-italic">"I struggled with inconsistent workouts for years. 
+             FitForce gave me a clear plan to build strength and lose fat effectively."</p>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="testimonial-card text-center px-4 text-dark">
+          <h5 class="mb-2 fw-semibold">Laura, 34</h5>
+          <p class="fst-italic">"Balancing work and fitness felt impossible until I found FitForce’s 
+             flexible workout plans. Now I’m healthier and more energetic."</p>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="testimonial-card text-center px-4 text-dark">
+          <h5 class="mb-2 fw-semibold">David, 37</h5>
+          <p class="fst-italic">"Thanks to the personalized workouts and nutrition advice, 
+             I dropped 10kg and feel better than ever at 37."</p>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="testimonial-card text-center px-4 text-dark">
+          <h5 class="mb-2 fw-semibold">Linda, 41</h5>
+          <p class="fst-italic">"I thought it was too late to get in shape, but FitForce showed me otherwise. 
+             I’ve gained muscle tone and energy."</p>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="testimonial-card text-center px-4 text-dark">
+          <h5 class="mb-2 fw-semibold">James, 45</h5>
+          <p class="fst-italic">"At 45, I doubted I could improve, but FitForce’s guidance made me 
+             stronger and more confident than ever before."</p>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="testimonial-card text-center px-4 text-dark">
+          <h5 class="mb-2 fw-semibold">Rachel, 26</h5>
+          <p class="fst-italic">"The workouts challenge me but respect my pace. 
+             I love how FitForce pushes me without overwhelming me."</p>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="testimonial-card text-center px-4 text-dark">
+          <h5 class="mb-2 fw-semibold">Robert, 48</h5>
+          <p class="fst-italic">"I lost 15kg and improved my mobility thanks to FitForce. 
+             My chronic back pain has almost disappeared."</p>
+        </div>
+      </div>
     </div>
-    <!-- Carousel Controls -->
-    <button class="carousel-control-prev" type="button" data-bs-target="#testimonialsCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#testimonialsCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
   </div>
 </section>
-
 {% endif %}
-
 {% endblock %}
