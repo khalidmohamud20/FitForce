@@ -173,6 +173,32 @@ FitForce strives not only to be a fitness tracker but a reliable companion in ev
 - **As a user with limited time**, I want a clean, fast-loading site, so I can quickly find and start my workouts.  
 - **As an admin/developer**, I want to create, update, and delete workouts, so I can keep the content fresh and relevant.
 
+## Wireframes
+
+### Desktop Views
+
+#### Home
+![Desktop Home](workouts/static/images/desktophome.png)
+
+#### Workouts
+![Desktop Workouts](workouts/static/images/desktopworkouts.png)
+
+#### About
+![Desktop About](workouts/static/images/desktopabout.png)
+
+---
+
+### Mobile Views
+
+#### Home
+![Mobile Home](workouts/static/images/phonehome.png)
+
+#### Workouts
+![Mobile Workouts](workouts/static/images/phoneworkouts.png)
+
+#### About
+![Mobile About](workouts/static/images/phoneabout.png)
+
 
 ## Testing
 
