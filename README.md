@@ -17,6 +17,7 @@ FitForce is a project created as part of my web development journey, focusing on
 - [🎯 Accessibility Features](#-accessibility-features)  
 - [⚡ Performance Optimizations](#-performance-optimizations)  
 - [🧑‍🤝‍🧑 User Stories](#-user-stories)  
+- [Wireframes](#wireframes)
 - [Testing](#testing)  
 - [💡 Lighthouse Report](#-lighthouse-report)  
 - [🚀 Getting Started](#-getting-started) 
